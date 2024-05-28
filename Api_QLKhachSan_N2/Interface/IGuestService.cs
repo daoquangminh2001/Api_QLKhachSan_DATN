@@ -7,6 +7,7 @@ namespace Api_QLKhachSan_N2.Interface
     {
         IEnumerable<Guest> GetFilterGuest(int? pagenumber, int? rowsofpage, string? search, string? sort);
         string? CreateGuest(Guest guest);
+        string? CreateListGuest(List<Guest> guest);
         string? UpdateGuest(Guest guest);
         string? DeleteGuest(string? khid);
     }

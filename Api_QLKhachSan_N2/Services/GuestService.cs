@@ -19,6 +19,24 @@ namespace Api_QLKhachSan_N2.services
         {
             return _repository.CreateGuest(guest);
         }
+
+        public string? CreateListGuest(List<Guest> guest)
+        {
+            string maKH = string.Empty;
+            foreach(Guest guestInformation in guest)
+            {
+                if(guestInformation != null)
+                {
+                    maKH = _repository.CreateGuest(guestInformation);
+
+                    if(maKH == string.Empty)
+                    {
+                        return string.Empty;
+                    }
+                }
+            }
+            return maKH;
+        }
         public string? UpdateGuest(Guest guest)
         {
             return _repository.UpdateGuest(guest);

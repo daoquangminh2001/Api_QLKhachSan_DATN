@@ -71,7 +71,35 @@ namespace Api_QLKhachSan_N2.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status400BadRequest, "e001");
+                return StatusCode(StatusCodes.Status400BadRequest, ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Api thêm mới danh sách nhiều khách hàng
+        /// </summary>
+        /// <param name = "string" ></ param >
+        /// < returns > Thông tin của danh sách khách hàng mới</returns>
+        [HttpPost("insertListGuest")]
+        [Authorize]
+        [SwaggerResponse(StatusCodes.Status200OK, type: typeof(string))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
+        [SwaggerResponse(StatusCodes.Status500InternalServerError)]
+        public IActionResult InsertListGuest(List<Guest> guest)
+        {
+            try
+            {
+                var result = _guestService.CreateListGuest(guest);
+                // Xử lý trả về của DB
+                if (result != null)
+                {
+                    return StatusCode(StatusCodes.Status200OK, result);
+                }
+                return StatusCode(StatusCodes.Status400BadRequest, "e002");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, ex.Message);
             }
         }
 
